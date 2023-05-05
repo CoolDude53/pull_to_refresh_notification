@@ -2,9 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart' show CupertinoDynamicColor;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 // The over-scroll distance that moves the indicator to its maximum
 // displacement, as a percentage of the scrollable's container extent.
@@ -197,8 +195,8 @@ class PullToRefreshNotificationState extends State<PullToRefreshNotification>
     final ThemeData theme = Theme.of(context);
     _valueColor = _positionController.drive(
       ColorTween(
-              begin: (widget.color ?? theme.accentColor).withOpacity(0.0),
-              end: (widget.color ?? theme.accentColor).withOpacity(1.0))
+              begin: (widget.color ?? theme.primaryColor).withOpacity(0.0),
+              end: (widget.color ?? theme.primaryColor).withOpacity(1.0))
           .chain(CurveTween(
               curve: const Interval(0.0, 1.0 / _kDragSizeFactorLimit))),
     );
@@ -531,7 +529,7 @@ class PullToRefreshNotificationState extends State<PullToRefreshNotification>
             return PullToRefreshCupertinoActivityIndicator(
               animating: showIndeterminateIndicator,
               radius: 15.0,
-              activeColor: widget.color ?? Theme.of(context).accentColor,
+              activeColor: widget.color ?? Theme.of(context).primaryColor,
             );
           } else {
             return RefreshProgressIndicator(
